@@ -33,3 +33,5 @@ function move() {
     move();
   }, 1000);
 }
+
+function clearMarkers() {}

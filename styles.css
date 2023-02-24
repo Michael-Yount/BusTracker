@@ -1,6 +1,7 @@
 body {
   margin: 0;
-  padding: 0;
+  padding: 10;
+  border: 5px;
 }
 #map {
   position: absolute;
@@ -11,5 +12,26 @@ body {
 .map-overlay {
   position: absolute;
   left: 0;
-  padding: 10px;
+  padding: 30px;
+}
+
+.button {
+  font-size: 1.5rem;
+  color: rgb(2, 255, 255);
+  background-color: rgb(27, 35, 26);
+  opacity: 60%;
+  text-shadow: 5 5;
+
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 1rem 1rem;
+  border-radius: 1rem;
+  transition: all 0.2s;
+  position: relative;
+  width: 30%;
+
+  display: flexbox;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
 }
