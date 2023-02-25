@@ -2,7 +2,7 @@
   "name": "bustracker",
   "version": "1.0.0",
   "description": "assignment for school.",
-  "main": "index.html",
+  "main": "myBusRouteAnimation.html",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
