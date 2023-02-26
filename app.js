@@ -20,7 +20,12 @@ const busStops = [
   [-71.0958, 42.360698],
   [-71.099558, 42.362953],
   [-71.103476, 42.365248],
+  [-71.106067, 42.366806],
+  [-71.108717, 42.368355],
+  [-71.110799, 42.369192],
+  [-71.113095, 42.370218],
   [-71.115476, 42.372085],
+  [-71.117585, 42.373016],
   [-71.118625, 42.374863],
 ];
 
@@ -33,5 +38,22 @@ function move() {
     move();
   }, 1000);
 }
+
+async function run() {
+  const locations = await getBusLocations();
+  console.log(new Date());
+  console.log(locations);
+}
+//timer
+setTimeout(run, 15000);
+
+async function getBusLocations() {
+  const url = "https://api-v3.mbta.com/vehicles?filter[route]=1&include=trip";
+  const response = await fetch(url);
+  const json = await response.json();
+  return json.data;
+}
+
+run();
 
 function clearMarkers() {}
