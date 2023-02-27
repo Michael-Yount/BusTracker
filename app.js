@@ -39,6 +39,12 @@ function move() {
   }, 1000);
 }
 
+
+var map;
+var mapMarkers = [];
+
+
+
 async function run() {
   const locations = await getBusLocations();
   console.log(new Date());
@@ -55,5 +61,3 @@ async function getBusLocations() {
 }
 
 run();
-
-function clearMarkers() {}
