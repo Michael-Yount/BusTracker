@@ -1,5 +1,6 @@
 "use strict";
 
+//"use strict";
 var map;
 var markers = []; // load map
 
