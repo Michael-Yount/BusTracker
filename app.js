@@ -3,12 +3,12 @@
 mapboxgl.accessToken =
   "pk.eyJ1IjoiY2hlc2hpcmVrYXRzbWlsZSIsImEiOiJjbGVoNWZ1eHgxN2JlM3NvMHc5YzBjczV0In0.zFDkGL0zUKKJKyoGFXXsCQ";
 
-const map = new mapboxgl.Map({
-  container: "map",
-  style: "mapbox://styles/mapbox/streets-v11",
-  center: [-71.092761, 42.357575],
-  zoom: 13,
-});
+//const map = new mapboxgl.Map({
+//  container: "map",
+//  style: "mapbox://styles/mapbox/streets-v11",
+// center: [-71.092761, 42.357575],
+//  zoom: 13,
+//});
 
 var marker = new mapboxgl.Marker()
   .setLngLat([-71.092761, 42.357575])
@@ -39,120 +39,87 @@ function move() {
   }, 1000);
 }
 
-
-var map;
-var mapMarkers = [];
-
-
-
-async function run() {
-  const locations = await getBusLocations();
-  console.log(new Date());
-  console.log(locations);
-}
-//timer
-setTimeout(run, 15000);
-
-async function getBusLocations() {
-  const url = "https://api-v3.mbta.com/vehicles?filter[route]=1&include=trip";
-  const response = await fetch(url);
-  const json = await response.json();
-  return json.data;
-}
-
-run();
-!DOCTYPE html>
-<html>
-<script src="http://maps.google.com/maps/api/js?key=AIzaSyARxs_0QWBQzZ-7tnFIkcz6Tzh5Fr1I0xg"></script>
-<div id="map" style="width:1024px; height:768px"></div>
-<script>
-
-var map;
+//var map;
 var markers = [];
 
 // load map
-function init(){
-	var myOptions = {
-		zoom      : 14,
-		center    : { lat:42.353350,lng:-71.091525},
-		mapTypeId : google.maps.MapTypeId.ROADMAP
-	};
-	var element = document.getElementById('map');
-  	map = new google.maps.Map(element, myOptions);
-  	addMarkers();
+function init() {
+  var myOptions = {
+    zoom: 14,
+    center: { lat: 42.35335, lng: -71.091525 },
+    //mapTypeId: google.maps.MapTypeId.ROADMAP,
+  };
+  var element = document.getElementById("map");
+  map = new mapboxgl.Map(element, myOptions);
+  addMarkers();
 }
 
 // Add bus markers to map
-async function addMarkers(){
-	// get bus data
-	var locations = await getBusLocations();
+async function addMarkers() {
+  // get bus data
+  var locations = await getBusLocations();
 
-	// loop through data, add bus markers
-	locations.forEach(function(bus){
-		var marker = getMarker(bus.id);		
-		if (marker){
-			moveMarker(marker,bus);
-		}
-		else{
-			addMarker(bus);			
-		}
-	});
+  // loop through data, add bus markers
+  locations.forEach(function (bus) {
+    var marker = getMarker(bus.id);
+    if (marker) {
+      moveMarker(marker, bus);
+    } else {
+      addMarker(bus);
+    }
+  });
 
-	// timer
-	console.log(new Date());
-	setTimeout(addMarkers,15000);
+  // timer
+  console.log(new Date());
+  setTimeout(addMarkers, 15000);
 }
 
 // Request bus data from MBTA
-async function getBusLocations(){
-	var url = 'https://api-v3.mbta.com/vehicles?api_key=ca34f7b7ac8a445287cab52fb451030a&filter[route]=1&include=trip';	
-	var response = await fetch(url);
-	var json     = await response.json();
-	return json.data;
+async function getBusLocations() {
+  var url =
+    "https://api-v3.mbta.com/vehicles?api_key=ca34f7b7ac8a445287cab52fb451030a&filter[route]=1&include=trip";
+  var response = await fetch(url);
+  var json = await response.json();
+  return json.data;
 }
 
-function addMarker(bus){
-	var icon = getIcon(bus);
-	var marker = new google.maps.Marker({
-	    position: {
-	    	lat: bus.attributes.latitude, 
-	    	lng: bus.attributes.longitude
-	    },
-	    map: map,
-	    icon: icon,
-	    id: bus.id
-	});
-	markers.push(marker);
+function addMarker(bus) {
+  var icon = getIcon(bus);
+  var marker = new google.maps.Marker({
+    position: {
+      lat: bus.attributes.latitude,
+      lng: bus.attributes.longitude,
+    },
+    map: map,
+    icon: icon,
+    id: bus.id,
+  });
+  markers.push(marker);
 }
 
-function getIcon(bus){
-	// select icon based on bus direction
-	if (bus.attributes.direction_id === 0) {
-		return 'red.png';
-	}
-	return 'blue.png';	
+function getIcon(bus) {
+  // select icon based on bus direction
+  if (bus.attributes.direction_id === 0) {
+    return "red.png";
+  }
+  return "blue.png";
 }
 
-function moveMarker(marker,bus) {
-	// change icon if bus has changed direction
-	var icon = getIcon(bus);
-	marker.setIcon(icon);
+function moveMarker(marker, bus) {
+  // change icon if bus has changed direction
+  var icon = getIcon(bus);
+  marker.setIcon(icon);
 
-	// move icon to new lat/lon
-    marker.setPosition( {
-    	lat: bus.attributes.latitude, 
-    	lng: bus.attributes.longitude
-	});
+  // move icon to new lat/lon
+  marker.setPosition({
+    lat: bus.attributes.latitude,
+    lng: bus.attributes.longitude,
+  });
 }
 
-function getMarker(id){
-	var marker = markers.find(function(item){
-		return item.id === id;
-	});
-	return marker;
+function getMarker(id) {
+  var marker = markers.find(function (item) {
+    return item.id === id;
+  });
+  return marker;
 }
-
-window.onload = init;
-
-</script>
-</html>
