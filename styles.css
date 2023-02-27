@@ -1,18 +1,32 @@
 body {
-  margin: 0;
+  margin: 10;
   padding: 10;
   background-color: rgb(86, 81, 81);
 }
 
 .container {
+  position: relative;
   display: flexbox;
-  margin: 3em;
+  margin: 1em;
   padding: 3em;
 }
 
 .map {
-  border-radius: 5%;
+  border-radius: 3%;
   border: 3px solid black;
   width: 1024px;
   height: 746px;
+  align-items: center;
+}
+
+.top {
+  display: block;
+  background-color: rgb(44, 35, 35);
+  color: rgb(219, 240, 240);
+  text-align: center;
+}
+.title {
+  margin: 1px;
+  padding: 1px;
+  background-color: rgb(105, 105, 81);
 }
