@@ -10,10 +10,6 @@ mapboxgl.accessToken =
 //  zoom: 13,
 //});
 
-var marker = new mapboxgl.Marker()
-  .setLngLat([-71.092761, 42.357575])
-  .addTo(map);
-
 const busStops = [
   [-71.093729, 42.359244],
   [-71.094915, 42.360175],
