@@ -1,7 +1,6 @@
 body {
   margin: 0;
   padding: 10;
-  border: 5px;
   background-color: rgb(86, 81, 81);
 }
 
@@ -16,5 +15,4 @@ body {
   border: 3px solid black;
   width: 1024px;
   height: 746px;
-  box-shadow: 10px solid rgba(0, 0, 0, 0.25);
 }
