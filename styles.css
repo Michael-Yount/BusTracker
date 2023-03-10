@@ -9,6 +9,7 @@ body {
   display: flexbox;
   margin: 1em;
   padding: 3em;
+  align-content: center;
 }
 
 .map {
