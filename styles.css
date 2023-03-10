@@ -6,7 +6,7 @@ body {
 
 .container {
   position: relative;
-  display: flexbox;
+  display: grid;
   margin: 1em;
   padding: 3em;
   align-content: center;
